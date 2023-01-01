@@ -30,7 +30,7 @@ namespace Catalog.API.Repositories
                .DeleteOneAsync(filter);
 
             return deleteResult.IsAcknowledged
-                && deleteResult.DeletedCount> 0;
+                && deleteResult.DeletedCount > 0;
         }
 
         public async Task<Product> GetProduct(string id)
