@@ -27,6 +27,6 @@ namespace Ordering.Application.Contracts.Persistence
 
         Task UpdateAsync(T entity);
         Task DeleteAsync(int id); 
-
+        Task DeleteAsync(T entity);
     }
 }
