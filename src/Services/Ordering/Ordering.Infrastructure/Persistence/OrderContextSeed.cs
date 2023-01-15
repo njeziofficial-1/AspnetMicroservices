@@ -8,7 +8,7 @@ namespace Ordering.Infrastructure.Persistence
 {
     public class OrderContextSeed
     {
-        public static async Task SeedAsync(OrderContext orderContext, ILogger<OrderContext> logger)
+        public static async Task SeedAsync(OrderContext orderContext, ILogger<OrderContextSeed> logger)
         {
             if (!orderContext.Orders.Any())
             {
@@ -22,7 +22,7 @@ namespace Ordering.Infrastructure.Persistence
         {
             return new List<Order>
             {
-                new Order {UserName = "swn", FirstName = "Njezi", LastName = "Chigozie", EmailAddress = "n@n.com", AddressLine ="Boulevard", Country ="Nigeria", TotalPrice = 350}
+                new Order {UserName = "swn", FirstName = "Njezi", LastName = "Chigozie", EmailAddress = "n@n.com", AddressLine ="Boulevard", Country ="Nigeria", TotalPrice = 350m}
             }; 
         }
     }

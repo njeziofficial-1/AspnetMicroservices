@@ -35,7 +35,7 @@ namespace Ordering.API.Controllers
 
 
 
-        [HttpPost(Name = "UpdateOrder")]
+        [HttpPut(Name = "UpdateOrder")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> UpdateOrder([FromBody] UpdateOrderCommand command)

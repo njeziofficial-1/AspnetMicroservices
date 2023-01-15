@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Ordering.Infrastructure.Persistence
 {
@@ -33,6 +34,10 @@ namespace Ordering.Infrastructure.Persistence
                 }
             }
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>().Property(p => p.TotalPrice).HasColumnType("decimal(18,4)");
         }
     }
 }

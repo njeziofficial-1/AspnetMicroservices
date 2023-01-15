@@ -10,19 +10,15 @@ using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure.Repositories
 {
-    public class OrderRepository 
+    public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
-        readonly IOrderUnitOfWork _unitOfWork;
 
-        public OrderRepository(IOrderUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        }
+        public OrderRepository(OrderContext dbContext) : base(dbContext)
+        {}
 
         public async Task<IEnumerable<Order>> GetOrdersByUserName(string userName)
         {
-           var orderList = await _unitOfWork.Repository<Order>()
-                .AsQueryable()
+           var orderList = await _dbContext.Orders
                 .Where(o => o.UserName == userName)
                 .ToListAsync();
 
