@@ -19,7 +19,7 @@ namespace Ordering.Application.Contracts.Persistence
 
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
             Func<IQueryable<T>, IOrderedQueryable<T>>orderBy = null,
-            List<Expression<Func<T, object>>>include = null,
+            List<Expression<Func<T, object>>>includes = null,
             bool disableTracking = true);
         Task<T> GetByIdAsync(int id);
 
@@ -28,5 +28,7 @@ namespace Ordering.Application.Contracts.Persistence
         Task UpdateAsync(T entity);
         Task DeleteAsync(int id); 
         Task DeleteAsync(T entity);
+
+        IQueryable<T> AsQueryable();
     }
 }
