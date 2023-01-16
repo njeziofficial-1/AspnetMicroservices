@@ -31,6 +31,12 @@ namespace Basket.API.Repositories
             return true;
         }
 
+        public async Task<bool> CreateBasketAsync(ShoppingCart basket)
+        {
+            await _redisCache.SetStringAsync(basket.UserName, JsonConvert.SerializeObject(basket));
+            return true;
+        }
+
         public async Task DeleteBasket(string userName)
         
           =>  await _redisCache.RemoveAsync(userName);
