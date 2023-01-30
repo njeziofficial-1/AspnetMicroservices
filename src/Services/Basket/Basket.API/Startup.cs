@@ -53,7 +53,7 @@ namespace Basket.API
                 (o => o.Address = new Uri(Configuration.GetValue<string>("GrpcSettings:DiscountUri")));
             services.AddScoped<IDiscountGrpcService, DiscountGrpcService>();
 
-            //Mass Transit Configuration using RabbitMq
+            //Mass Transit Configuration using RabbitMq (Producer)
             services.AddMassTransit(config =>
             {
                 config.UsingRabbitMq((ctx, cfg) =>
