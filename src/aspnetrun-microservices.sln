@@ -3,9 +3,35 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C5F3F255-8B3D-48EC-815C-335BA90478CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{7E3C24DB-0248-458D-8ADE-1E07C9523DFE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Api", "Services\Catalog\Catalog.Api\Catalog.Api.csproj", "{43A33B41-47C1-4C95-B55F-B2BC7095BC21}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{09506187-5B7D-41DB-A918-3A674FC99F83}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43A33B41-47C1-4C95-B55F-B2BC7095BC21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A33B41-47C1-4C95-B55F-B2BC7095BC21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A33B41-47C1-4C95-B55F-B2BC7095BC21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A33B41-47C1-4C95-B55F-B2BC7095BC21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09506187-5B7D-41DB-A918-3A674FC99F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09506187-5B7D-41DB-A918-3A674FC99F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09506187-5B7D-41DB-A918-3A674FC99F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09506187-5B7D-41DB-A918-3A674FC99F83}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7E3C24DB-0248-458D-8ADE-1E07C9523DFE} = {C5F3F255-8B3D-48EC-815C-335BA90478CC}
+		{43A33B41-47C1-4C95-B55F-B2BC7095BC21} = {7E3C24DB-0248-458D-8ADE-1E07C9523DFE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42F83C45-81A3-45B6-A97F-512F0128FE47}
