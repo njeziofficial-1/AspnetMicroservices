@@ -1,4 +1,4 @@
-﻿using Basket.Api.Entities;
+﻿
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
@@ -6,27 +6,27 @@ namespace Basket.Api.Repositories;
 
 public class BasketRepository : IBasketRepository
 {
-    readonly IDistributedCache _redisCache;
+    readonly IDistributedCache _cache;
 
-    public BasketRepository(IDistributedCache redisCache)
+    public BasketRepository(IDistributedCache cache)
     {
-        _redisCache = redisCache;
+        _cache = cache;
     }
 
-    public async Task DeleteBasket(string userName)
-    => await _redisCache.RemoveAsync(userName);
+    public async Task Delete(string username)
+    => await _cache.RemoveAsync(username);
 
-    public async Task<T?> GetBasket<T>(string userName) where T : class
+    public async Task<T?> Get<T>(string username) where T : class
     {
-        var basketString = await _redisCache.GetStringAsync(userName);
-        if (string.IsNullOrEmpty(basketString))
-            return null;
-        return JsonSerializer.Deserialize<T>(basketString);
+        var response = await _cache.GetStringAsync(username);
+        if (string.IsNullOrEmpty(response))
+            return default;
+        return JsonSerializer.Deserialize<T?>(response);
     }
 
-    public async Task<T?> UpdateBasket<T>(string username, T basket) where T : class
+    public async Task<T?> Update<T>(string username, T value) where T : class
     {
-        await _redisCache.SetStringAsync(username, JsonSerializer.Serialize(basket));
-        return await GetBasket<T>(username);
+        await _cache.SetStringAsync(username, JsonSerializer.Serialize(value));
+        return await Get<T>(username);
     }
 }

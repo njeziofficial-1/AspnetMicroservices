@@ -18,21 +18,23 @@ public class BasketController : ControllerBase
 
     [HttpGet("{username}", Name = "GetBasket")]
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult>GetBasket(string username)
+    public async Task<IActionResult> GetBasket(string username)
     {
-        var basket = await _repository.GetBasket<ShoppingCart>(username);
+        var basket = await _repository.Get<ShoppingCart>(username);
         return Ok(basket ?? new ShoppingCart(username));
     }
 
     [HttpPost]
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> UpdateBasket([FromBody] ShoppingCart basket)
-    => Ok(await _repository.UpdateBasket(basket.UserName, basket));
+    => Ok(await _repository.Update(basket.Username, basket));
+
 
     [HttpDelete("{username}", Name = "DeleteBasket")]
-    public async Task<IActionResult>DeleteBasket(string username)
+    [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> DeleteBasket(string username)
     {
-        await _repository.DeleteBasket(username);
-        return Ok($"Basket with username: {username}, deleted successfully.");
+        await _repository.Delete(username);
+        return Ok($"Basket with username: {username} deleted successfully.");
     }
 }
