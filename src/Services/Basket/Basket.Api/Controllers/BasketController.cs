@@ -27,7 +27,13 @@ public class BasketController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> UpdateBasket([FromBody] ShoppingCart basket)
-    => Ok(await _repository.Update(basket.Username, basket));
+    {
+        /*TODO: Communicate with Discount.Grpc
+         * and calculate latest price of product into shopping cart
+        */
+
+        return Ok(await _repository.Update(basket.Username, basket));
+    }
 
 
     [HttpDelete("{username}", Name = "DeleteBasket")]
