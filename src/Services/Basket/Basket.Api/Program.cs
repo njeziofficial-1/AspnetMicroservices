@@ -1,4 +1,6 @@
+using Basket.Api.GrpcServices;
 using Basket.Api.Repositories;
+using Discount.Grpc.Protos;
 using Microsoft.OpenApi.Models;
 
 internal class Program
@@ -21,7 +23,8 @@ internal class Program
             options.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
         });
         builder.Services.AddScoped<IBasketRepository,  BasketRepository>();
-
+        builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(o => o.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]));
+        builder.Services.AddScoped<DiscountGrpcService>();
 
         var app = builder.Build();
 
