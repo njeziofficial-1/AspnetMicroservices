@@ -14,7 +14,8 @@ public static class InfrastructureServiceRegistration
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<OrderContext>(options => options.UseSqlServer(configuration.GetConnectionString("OrderingConnectionString")));
+        services.AddDbContext<OrderContext>(options => options
+        .UseSqlServer(configuration.GetConnectionString("OrderingConnectionString")));
         services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.Configure <EmailSettings>(c => configuration.GetSection(nameof(EmailSettings)));
