@@ -1,3 +1,4 @@
+using Ordering.Application;
 using Ordering.Application.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IEmailServiceHelper, EmailServiceHelper>();
+builder.Services.AddApplicationServices();
+//builder.Services.AddInfrastructureServices();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
