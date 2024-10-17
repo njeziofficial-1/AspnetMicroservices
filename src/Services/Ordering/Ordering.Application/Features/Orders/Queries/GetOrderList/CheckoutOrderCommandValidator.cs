@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Ordering.Application.Features.Orders.Commands.CheckOutOrder;
+using Ordering.Application.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,6 @@ public class CheckoutOrderCommandValidator : AbstractValidator<CheckoutOrderComm
 {
     public CheckoutOrderCommandValidator()
     {
-        
         RuleFor(p => p.UserName)
             .NotEmpty().WithMessage("{UserName} is required")
             .NotNull()
@@ -21,15 +21,9 @@ public class CheckoutOrderCommandValidator : AbstractValidator<CheckoutOrderComm
 
         RuleFor(p => p.EmailAddress)
             .NotEmpty().WithMessage("{EmailAddress} is required")
-            .Must(p => EmailValidator(p)).WithMessage("{EmailAddress} format is wrong");
+            .Must(p => ValidatorHelper.EmailValidator(p)).WithMessage("{EmailAddress} format is wrong");
 
         RuleFor(p => p.TotalPrice).NotEmpty().WithMessage("{TotalPrice} is required")
             .GreaterThan(0).WithMessage("{TotalPrice} should be greater than zero");
-    }
-
-    bool EmailValidator(string email)
-    {
-        var emailValidator = new EmailAddressAttribute();
-        return emailValidator.IsValid(email);
-    }
+    }   
 }
