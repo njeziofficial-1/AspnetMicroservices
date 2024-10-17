@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Ordering.Application.Contracts.Persistence;
+using Ordering.Application.Exceptions;
 using Ordering.Application.Helpers;
 using Ordering.Domain.Entities;
 using System;
@@ -36,8 +37,7 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, Uni
         if (orderToUpdate == null)
         {
             _logger.LogError("Order does not exist in database");
-            //throw new ArgumentException(nameof(Order), request.Id };
-            return Unit.Value;
+            throw new NotFoundException(nameof(Order), request.Id);
         }
 
         _mapper.Map(request, orderToUpdate, typeof(UpdateOrderCommand), typeof(Order));
