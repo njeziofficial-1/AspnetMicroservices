@@ -14,7 +14,7 @@ public static class ApplicationServiceRegistration
         var executingAssembly = Assembly.GetExecutingAssembly();
         services.AddAutoMapper(executingAssembly);
         services.AddValidatorsFromAssembly(executingAssembly);
-        services.AddMediatR(executingAssembly);
+        services.AddMediatR(x => x.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         services.AddScoped<IEmailServiceHelper, EmailServiceHelper>();
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));

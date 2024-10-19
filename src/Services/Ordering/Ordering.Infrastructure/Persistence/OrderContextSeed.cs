@@ -19,13 +19,37 @@ public class OrderContextSeed
         {
             new()
             {
-                UserName = "Njezi",
-                FirstName = "Lord",
+                UserName = "njezi",
+                FirstName = "Njezi",
                 LastName ="Chigozie",
+                TotalPrice = 350,
                 EmailAddress = "njezichigozie@yahoo.com",
                 AddressLine = "1 Unity Road, Elebu, Oyo State",
                 Country = "Nigeria",
-                TotalPrice = 350
+                State = "Oyo State",
+                ZipCode = "1001001",
+                CardName = "Njezi Chigozie",
+                CardNumber = "090898767",
+                Expiration = "04-09-2095",
+                CVV = "123",
+                PaymentMethod = 1
+            },
+            new()
+            {
+                UserName = "jaylo",
+                FirstName = "Lovelyn",
+                LastName ="Ugomma",
+                TotalPrice = 789,
+                EmailAddress = "ugommalovelyn@yahoo.com",
+                AddressLine = "1 Unity Road, Elebu, Oyo State",
+                Country = "Canada",
+                State = "Ottawa",
+                ZipCode = "7871223",
+                CardName = "Lovelyn Ugomma",
+                CardNumber = "1212343453",
+                Expiration = "07-10-2295",
+                CVV = "321",
+                PaymentMethod = 2
             }
         };
 }

@@ -10,6 +10,9 @@ services:
   discountdb:
     image: postgres
 
+  orderdb:
+    image: rapidfort/microsoft-sql-server-2019-ib:latest
+
   pgadmin:
     image: dpage/pgadmin4
 
